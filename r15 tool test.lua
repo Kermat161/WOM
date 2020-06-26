@@ -71,6 +71,7 @@ TrackerArm.Parent = game.Workspace
 TrackerArm.Size = Vector3.new(1, 2, 1)
 TrackerArm.Anchored = true
 TrackerArm.CanCollide = false
+TrackerArm.Name = "ArmTrackerPart"
 TrackerArm.Transparency = 0.5
 
 game.Players.LocalPlayer.Character.ChildAdded:Connect(function()
