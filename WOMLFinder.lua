@@ -71,9 +71,9 @@ for i,v in pairs(game:GetService("Workspace").Map.PlaceLocations:GetChildren()) 
 				LID = location:Clone()
 				LID.Parent = v.TempStructure.Center
 				LID.holder.edges.bk.Lname.Text = v.TempStructure.DisplayName.Value
-				if v.TempStructure.DisplayName.Value:find("Mage") or v.TempStructure.DisplayName.Value:find("Courageous") or v.TempStructure.DisplayName.Value:find("Champion") or v.TempStructure.DisplayName.Value:find("Sorcerer") or v.TempStructure.DisplayName.Value:find("Brave") then
+				if v.TempStructure:FindFirstChild("PrivateStorage") then
 					LID.holder.edges.bk.Lname.TextColor3 = Color3.fromRGB(0,255,0)
-				elseif v.TempStructure.DisplayName.Value:find("Hunter") or v.TempStructure.DisplayName.Value:find("Murderer") or v.TempStructure.DisplayName.Value:find("Vicious") or v.TempStructure.DisplayName.Value:find("Undefeated") or v.TempStructure.DisplayName.Value:find("Devil") or v.TempStructure.DisplayName.Value:find("Assassin") or v.TempStructure.DisplayName.Value:find("Demon") then
+				elseif v.TempStructure:FindFirstChild("Chest") then
 					LID.holder.edges.bk.Lname.TextColor3 = Color3.fromRGB(255,0,0)
 				end
 			end
