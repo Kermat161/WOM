@@ -68,10 +68,8 @@ end
 
 bind()
 
-game:GetService("RunService").RenderStepped:Wait()
-wait(0.2)
+while wait(0.2) do
 
-game:GetService("RunService").RenderStepped:Wait()
 if game.Workspace:FindFirstChild(LP.Name) then
     if LP.Character:FindFirstChildOfClass("Humanoid") then
         if LP.Character.Humanoid.Health > 30 then
@@ -90,4 +88,5 @@ if game.Workspace:FindFirstChild(LP.Name) then
             end
         end
     end
+end
 end
