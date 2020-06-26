@@ -64,21 +64,25 @@ Lname.TextWrapped = true
 while wait(0.1) do
 
 for i,v in pairs(game:GetService("Workspace").Map.PlaceLocations:GetChildren()) do
-	if v.Name == "Location" then
-		if v:FindFirstChild("TempStructure") then
-			if v.TempStructure:FindFirstChild("DisplayName") and v.TempStructure:FindFirstChild("Center") and not v.TempStructure.Center:FindFirstChild("location") then
-				wait(0.1)
-				LID = location:Clone()
-				LID.Parent = v.TempStructure.Center
-				LID.holder.edges.bk.Lname.Text = v.TempStructure.DisplayName.Value
-				if v.TempStructure:FindFirstChild("PrivateStorage") then
-					LID.holder.edges.bk.Lname.TextColor3 = Color3.fromRGB(0,255,0)
-				elseif v.TempStructure:FindFirstChild("Chest") then
-					LID.holder.edges.bk.Lname.TextColor3 = Color3.fromRGB(255,0,0)
-				end
-			end
-		end
-	end
+    if v.Name == "Location" then
+        if v:FindFirstChild("TempStructure") then
+            if v.TempStructure:FindFirstChild("DisplayName") and v.TempStructure:FindFirstChild("Center") and not v.TempStructure.Center:FindFirstChild("location") then
+                wait(0.1)
+                LID = location:Clone()
+                LID.Parent = v.TempStructure.Center
+                LID.holder.edges.bk.Lname.Text = v.TempStructure.DisplayName.Value
+                if v.TempStructure:FindFirstChild("PrivateStorage") then
+                    if not v.TempStructure.DisplayName.Value:find("Camp") then
+                        LID.holder.edges.bk.Lname.TextColor3 = Color3.fromRGB(0,255,0)
+                    end
+                elseif v.TempStructure:FindFirstChild("Chest") then
+                    if not v.TempStructure.DisplayName.Value:find("Camp") then
+                        LID.holder.edges.bk.Lname.TextColor3 = Color3.fromRGB(255,0,0)
+                    end
+                end
+            end
+        end
+    end
 end
 
 end
