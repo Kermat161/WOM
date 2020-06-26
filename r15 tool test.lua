@@ -2,7 +2,7 @@ local Players = game:GetService("Players")
  local Client = Players.LocalPlayer
   local Character = Client.Character or Client.CharacterAdded:Wait()
    local WeldBase = Character:WaitForChild("HumanoidRootPart")
-   local ArmBase = Character:FindFirstChild("RightHand") or Character:FindFirstChild("Right Arm") or WeldBase
+   local ArmBase = Character:FindFirstChild("UpperTorso") or Character:FindFirstChild("Right Arm") or WeldBase
   local Backpack = Client:WaitForChild("Backpack")
   local Mouse = Client:GetMouse()
   local LP = game:GetService("Players").LocalPlayer
@@ -77,8 +77,8 @@ game.Players.LocalPlayer.Character.ChildAdded:Connect(function()
 local EquippedTool = GetExtraTool()           
 if EquippedTool and EquippedTool:FindFirstChild("Handle") then
 game:GetService("RunService").Stepped:Connect(function()
-if game.Players.LocalPlayer.Character:FindFirstChild("RightHand") then
-TrackerArm.CFrame = game.Players.LocalPlayer.Character:FindFirstChild("RightHand").CFrame
+if game.Players.LocalPlayer.Character:FindFirstChild("UpperTorso") then
+TrackerArm.CFrame = game.Players.LocalPlayer.Character:FindFirstChild("UpperTorso").CFrame
 end
 wait()
 end)
@@ -98,7 +98,7 @@ end)
         wait(0.1)
                
         local ArmBaseCFrame = ArmBase.CFrame
-        if ArmBase.Name == "RightHand" then
+        if ArmBase.Name == "UpperTorso" then
             ArmBaseCFrame = ArmBaseCFrame
         end
         print(EquippedTool.Name)
