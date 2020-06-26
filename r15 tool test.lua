@@ -11,6 +11,15 @@ local Heartbeat = game:GetService("RunService").Heartbeat
 local HRP = Char:WaitForChild("HumanoidRootPart")
 local TweenService = game:GetService("TweenService")
 local humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid
+local NetworkAccess = coroutine.create(function()
+settings().Physics.AllowSleep = false
+while true do game:GetService("RunService").RenderStepped:Wait()
+for _,Players in next, game:GetService("Players"):GetChildren() do
+if Players ~= game:GetService("Players").LocalPlayer then
+Players.MaximumSimulationRadius = 0.1 Players.SimulationRadius = 0 end end
+game:GetService("Players").LocalPlayer.MaximumSimulationRadius = math.pow(math.huge,math.huge)
+sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge*math.huge)
+coroutine.resume(NetworkAccess)
  
 local Camera = workspace.CurrentCamera
  
