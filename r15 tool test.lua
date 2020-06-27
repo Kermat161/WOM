@@ -2,7 +2,7 @@ local Players = game:GetService("Players")
  local Client = Players.LocalPlayer
   local Character = Client.Character or Client.CharacterAdded:Wait()
    local WeldBase = Character:WaitForChild("HumanoidRootPart")
-   local ArmBase = Character:FindFirstChild("UpperTorso") or Character:FindFirstChild("UpperTorso") or WeldBase
+   local ArmBase = Character:FindFirstChild("RightLowerArm") or Character:FindFirstChild("Right Arm") or WeldBase
   local Backpack = Client:WaitForChild("Backpack")
   local Mouse = Client:GetMouse()
   local LP = game:GetService("Players").LocalPlayer
@@ -11,15 +11,6 @@ local Heartbeat = game:GetService("RunService").Heartbeat
 local HRP = Char:WaitForChild("HumanoidRootPart")
 local TweenService = game:GetService("TweenService")
 local humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid
-local NetworkAccess = coroutine.create(function()
-settings().Physics.AllowSleep = false
-while true do game:GetService("RunService").RenderStepped:Wait()
-for _,Players in next, game:GetService("Players"):GetChildren() do
-if Players ~= game:GetService("Players").LocalPlayer then
-Players.MaximumSimulationRadius = 0.1 Players.SimulationRadius = 0 end end
-game:GetService("Players").LocalPlayer.MaximumSimulationRadius = math.pow(math.huge,math.huge)
-sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge*math.huge)
-coroutine.resume(NetworkAccess)
  
 local Camera = workspace.CurrentCamera
  
@@ -71,20 +62,19 @@ TrackerArm.Parent = game.Workspace
 TrackerArm.Size = Vector3.new(1, 2, 1)
 TrackerArm.Anchored = true
 TrackerArm.CanCollide = false
-TrackerArm.Name = "ArmTrackerPart"
-TrackerArm.Transparency = 0.5
+TrackerArm.Transparency = 1
 
 game.Players.LocalPlayer.Character.ChildAdded:Connect(function()
 local EquippedTool = GetExtraTool()           
 if EquippedTool and EquippedTool:FindFirstChild("Handle") then
 game:GetService("RunService").Stepped:Connect(function()
-if game.Players.LocalPlayer.Character:FindFirstChild("UpperTorso") then
-TrackerArm.CFrame = game.Players.LocalPlayer.Character:FindFirstChild("UpperTorso").CFrame
+if game.Players.LocalPlayer.Character:FindFirstChild("RightLowerArm") then
+TrackerArm.CFrame = game.Players.LocalPlayer.Character:FindFirstChild("RightLowerArm").CFrame
 end
 wait()
 end)
 
-		EquippedTool.Handle.CanCollide = false
+        EquippedTool.Handle.CanCollide = false
         local refp = Instance.new("Part", TrackerArm)
         refp.Size = EquippedTool.Handle.Size
         refp.Transparency = 1
@@ -99,7 +89,7 @@ end)
         wait(0.1)
                
         local ArmBaseCFrame = ArmBase.CFrame
-        if ArmBase.Name == "UpperTorso" then
+        if ArmBase.Name == "RightLowerArm" then
             ArmBaseCFrame = ArmBaseCFrame
         end
         print(EquippedTool.Name)
