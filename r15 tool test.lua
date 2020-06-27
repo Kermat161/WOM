@@ -64,6 +64,13 @@ TrackerArm.Anchored = true
 TrackerArm.CanCollide = false
 TrackerArm.Transparency = 1
 
+game.Players.LocalPlayer.Character:FindFirstChild("RightHand").ChildAdded:Connect(function(aaa)
+    if aaa.Name == "RightGrip" and aaa:IsA("Weld") then
+        wait()
+        aaa:Destroy()
+    end
+end)
+
 game.Players.LocalPlayer.Character.ChildAdded:Connect(function()
 local EquippedTool = GetExtraTool()           
 if EquippedTool and EquippedTool:FindFirstChild("Handle") then
@@ -105,10 +112,6 @@ end)
         BG.MaxTorque = Vector3.new(math.huge,math.huge,math.huge)
         BG.D = 100
         BG.P = 20000
-
-        wait()
-
-        game.Players.LocalPlayer.Character.RightHand.RightGrip:Destroy()
         
         repeat
         BP.Position = refp.Position
