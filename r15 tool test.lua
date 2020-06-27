@@ -108,7 +108,7 @@ end)
 
         wait()
 
-        game.Players.LocalPlayer.Character.RightHand.RightGrip
+        game.Players.LocalPlayer.Character.RightHand.RightGrip:Destroy()
         
         repeat
         BP.Position = refp.Position
