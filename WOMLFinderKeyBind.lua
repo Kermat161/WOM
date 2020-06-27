@@ -106,7 +106,7 @@ end
 end
 
 M.KeyDown:connect(function(key)
-    if key == "n" then
+    if key == "j" then
         if on_1 == true then
             wait()
             on_1 = false
