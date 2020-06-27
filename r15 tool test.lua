@@ -105,6 +105,10 @@ end)
         BG.MaxTorque = Vector3.new(math.huge,math.huge,math.huge)
         BG.D = 100
         BG.P = 20000
+
+        wait()
+
+        game.Players.LocalPlayer.Character.RightHand.RightGrip
         
         repeat
         BP.Position = refp.Position
