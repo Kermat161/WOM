@@ -61,13 +61,13 @@ Lname.TextSize = 20.000
 Lname.TextStrokeTransparency = 0.750
 Lname.TextWrapped = true
 
-while wait(0.1) do
+while wait(0.5) do
 
 for i,v in pairs(game:GetService("Workspace").Map.PlaceLocations:GetChildren()) do
     if v.Name == "Location" then
         if v:FindFirstChild("TempStructure") then
             if v.TempStructure:FindFirstChild("DisplayName") and v.TempStructure:FindFirstChild("Center") and not v.TempStructure.Center:FindFirstChild("location") then
-                wait(0.1)
+                wait(0.25)
                 LID = location:Clone()
                 LID.Parent = v.TempStructure.Center
                 LID.holder.edges.bk.Lname.Text = v.TempStructure.DisplayName.Value
