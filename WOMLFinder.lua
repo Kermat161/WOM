@@ -61,8 +61,9 @@ Lname.TextSize = 20.000
 Lname.TextStrokeTransparency = 0.750
 Lname.TextWrapped = true
 
-while wait(0.5) do
 
+local function update_1()
+------
 for i,v in pairs(game:GetService("Workspace").Map.PlaceLocations:GetChildren()) do
     if v.Name == "Location" then
         if v:FindFirstChild("TempStructure") then
@@ -84,5 +85,31 @@ for i,v in pairs(game:GetService("Workspace").Map.PlaceLocations:GetChildren()) 
         end
     end
 end
+------
+end
 
+
+local function stop_1()
+------
+for i,v in pairs(game:GetService("Workspace").Map.PlaceLocations:GetChildren()) do
+    if v.Name == "Location" then
+        if v:FindFirstChild("TempStructure") then
+            if v.TempStructure:FindFirstChild("DisplayName") and v.TempStructure:FindFirstChild("Center") and v.TempStructure.Center:FindFirstChild("location") then
+            	wait(0.25)
+            	v.TempStructure.Center.location:Destroy()
+            end
+        end
+    end
+end
+------
+end
+
+
+--examp of checking and use
+while wait(0.5) do
+	if on_1 == true then
+		update_1()
+	elseif on_1 == false then
+		stop_1()
+	end
 end
