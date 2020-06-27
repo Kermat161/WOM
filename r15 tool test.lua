@@ -66,7 +66,7 @@ TrackerArm.Transparency = 1
 
 game.Players.LocalPlayer.Character:FindFirstChild("RightHand").ChildAdded:Connect(function(aaa)
     if aaa.Name == "RightGrip" and aaa:IsA("Weld") then
-        wait()
+        game:GetService("RunService").Stepped:Wait()
         aaa:Destroy()
     end
 end)
