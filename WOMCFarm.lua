@@ -26,7 +26,7 @@ local function Tween(part, endpos, speed)
     if part and endpos then
         --
         local mageee = (root.Position - endpos).Magnitude
-        if mageee > 40 then
+        if mageee > 70 then
             local setuppos_1 = Vector3.new(part.Position.X,101,part.Position.Z)
             local Time_1 = (setuppos_1 - part.Position).magnitude/speed
             local Info_1 = TweenInfo.new(Time_1, Enum.EasingStyle.Linear)
