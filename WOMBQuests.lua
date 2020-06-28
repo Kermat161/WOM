@@ -10,13 +10,11 @@ local dif = Instance.new("TextLabel")
 local Shadow = Instance.new("ImageLabel")
 local Icon = Instance.new("TextLabel")
 
---Properties:
-
 QuestIndicatorNew.Name = "QuestIndicator"
 QuestIndicatorNew.Parent = game.CoreGui
 QuestIndicatorNew.AlwaysOnTop = true
 QuestIndicatorNew.MaxDistance = 1000.000
-QuestIndicatorNew.Size = UDim2.new(15, 0, 4.5, 0)
+QuestIndicatorNew.Size = UDim2.new(15, 24, 4.5, 10)
 QuestIndicatorNew.StudsOffset = Vector3.new(0, 6, 0)
 
 housing.Name = "housing"
@@ -136,15 +134,11 @@ Icon.Size = UDim2.new(0.300000012, 0, 1, 0)
 Icon.ZIndex = 2
 Icon.Font = Enum.Font.GothamBlack
 Icon.Text = "?"
-Icon.TextColor3 = Color3.fromRGB(127, 255, 127)
+Icon.TextColor3 = Color3.fromRGB(120, 255, 120)
 Icon.TextScaled = true
 Icon.TextSize = 14.000
 Icon.TextStrokeTransparency = 0.750
 Icon.TextWrapped = true
-
-
-
-
 
 while wait(0.1) do
 
@@ -162,6 +156,21 @@ for i,v in pairs(game:GetService("Workspace").NPCs:GetChildren()) do
                     		nqi.Parent = v.Head
                     		nqi.housing.Shading.Background.crowns.Text = v.Data.QuestCrowns.Value.."  Crowns"
                     		nqi.housing.Shading.Background.xp.Text = v.Data.QuestXP.Value.." XP"
+
+                    		if v.Data.RepType.Value == "Positive" then
+                    			nqi.Icon.TextColor3 = Color3.fromRGB(120, 255, 120)
+                    			nqi.housing.Shading.Background.crowns.TextColor3 = Color3.fromRGB(120, 255, 120)
+                    			nqi.housing.Shading.Background.xp.TextColor3 = Color3.fromRGB(120, 255, 120)
+                    			nqi.housing.Shading.Background.typee.TextColor3 = Color3.fromRGB(120, 255, 120)
+                    			nqi.housing.Shading.Background.dif.TextColor3 = Color3.fromRGB(120, 255, 120)
+                    		elseif v.Data.RepType.Value == "Negative" then
+                    			nqi.Icon.TextColor3 = Color3.fromRGB(255, 120, 120)
+                    			nqi.housing.Shading.Background.crowns.TextColor3 = Color3.fromRGB(255, 120, 120)
+                    			nqi.housing.Shading.Background.xp.TextColor3 = Color3.fromRGB(255, 120, 120)
+                    			nqi.housing.Shading.Background.typee.TextColor3 = Color3.fromRGB(255, 120, 120)
+                    			nqi.housing.Shading.Background.dif.TextColor3 = Color3.fromRGB(255, 120, 120)
+                    		end
+
                     		
                     		if v.Data.QuestType.Value:find("LostItem") then
                     			nqi.housing.Shading.Background.typee.Text = "Get Lost Item"
@@ -187,6 +196,28 @@ for i,v in pairs(game:GetService("Workspace").NPCs:GetChildren()) do
                     			nqi.housing.Shading.Background.typee.Text = "Clear Bandit Camp"
                     		elseif v.Data.QuestType.Value:find("DefeatPirate") then
                     			nqi.housing.Shading.Background.typee.Text = "Defeat Pirate"
+                    		elseif v.Data.QuestType.Value:find("BountyHunter") then
+                    			if v.Data.QuestType.Value:find("Group") then
+                    				nqi.housing.Shading.Background.typee.Text = "Kill Bounty Hunter Group"
+                    			else
+                    				nqi.housing.Shading.Background.typee.Text = "Kill Bounty Hunter"
+                    			end
+                    		elseif v.Data.QuestType.Value:find("DefeatVillain") then
+                    			nqi.housing.Shading.Background.typee.Text = "Defeat Villain"
+                    		elseif v.Data.QuestType.Value:find("Scout") then
+                    			if v.Data.QuestType.Value:find("Group") then
+                    				nqi.housing.Shading.Background.typee.Text = "Kill Scout Group"
+                    			else
+                    				nqi.housing.Shading.Background.typee.Text = "Kill Scout"
+                    			end
+                    		elseif v.Data.QuestType.Value:find("KillLightWizard") then
+                    			if v.Data.QuestType.Value:find("Group") then
+                    				nqi.housing.Shading.Background.typee.Text = "Kill Light Wizard Group"
+                    			else
+                    				nqi.housing.Shading.Background.typee.Text = "Kill Light Wizard"
+                    			end
+                    		elseif v.Data.QuestType.Value:find("MCCamp") then
+                    			nqi.housing.Shading.Background.typee.Text = "Destroy MC Camp"
                     		end
 
                     		if v.Data.QuestDifficulty.Value == 1 then
