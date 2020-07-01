@@ -14,7 +14,7 @@ QuestIndicatorNew.Name = "QuestIndicator"
 QuestIndicatorNew.Parent = game.CoreGui
 QuestIndicatorNew.AlwaysOnTop = true
 QuestIndicatorNew.MaxDistance = 1000.000
-QuestIndicatorNew.Size = UDim2.new(15, 24, 4.5, 10)
+QuestIndicatorNew.Size = UDim2.new(15, 30, 4.5, 12)
 QuestIndicatorNew.StudsOffset = Vector3.new(0, 6, 0)
 
 housing.Name = "housing"
@@ -140,8 +140,13 @@ Icon.TextSize = 14.000
 Icon.TextStrokeTransparency = 0.750
 Icon.TextWrapped = true
 
-while wait(0.1) do
 
+M = game.Players.LocalPlayer:GetMouse()
+local on_2 = true
+
+
+local function update_2()
+----
 for i,v in pairs(game:GetService("Workspace").NPCs:GetChildren()) do
     if v:IsA("Model") then
         if v:FindFirstChildOfClass("Humanoid") then
@@ -235,5 +240,47 @@ for i,v in pairs(game:GetService("Workspace").NPCs:GetChildren()) do
         end
     end
 end
+----
+end
 
+local function stop_2()
+----
+for i,v in pairs(game:GetService("Workspace").NPCs:GetChildren()) do
+    if v:IsA("Model") then
+        if v:FindFirstChildOfClass("Humanoid") then
+            if v.Humanoid.Health > 1 then
+                if v.Head:FindFirstChild("QuestIndicator") then
+                    if v.Head.QuestIndicator.Enabled == true then
+                    	if v.Head.QuestIndicator.AlwaysOnTop == true then
+                    		v.Head.QuestIndicator.AlwaysOnTop = false
+                    	end
+                    end
+                end
+            end
+        end
+    end
+end
+----
+end
+
+M.KeyDown:connect(function(key)
+    if key == "h" then
+        if on_2 == true then
+            wait()
+            on_2 = false
+        elseif on_2 == false then
+            wait()
+            on_2 = true
+        end
+    end
+end)
+
+while wait(0.5) do
+----
+	if on_2 == true then
+		update_2()
+	elseif on_1 == false then
+		stop_2()
+	end
+----
 end
