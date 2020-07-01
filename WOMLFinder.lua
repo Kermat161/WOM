@@ -61,6 +61,8 @@ Lname.TextSize = 20.000
 Lname.TextStrokeTransparency = 0.750
 Lname.TextWrapped = true
 
+M = game.Players.LocalPlayer:GetMouse()
+local on_1 = true
 
 local function update_1()
 ------
@@ -88,15 +90,14 @@ end
 ------
 end
 
-
 local function stop_1()
 ------
 for i,v in pairs(game:GetService("Workspace").Map.PlaceLocations:GetChildren()) do
     if v.Name == "Location" then
         if v:FindFirstChild("TempStructure") then
             if v.TempStructure:FindFirstChild("DisplayName") and v.TempStructure:FindFirstChild("Center") and v.TempStructure.Center:FindFirstChild("location") then
-            	wait(0.25)
-            	v.TempStructure.Center.location:Destroy()
+                wait(0.25)
+                v.TempStructure.Center.location:Destroy()
             end
         end
     end
@@ -104,12 +105,22 @@ end
 ------
 end
 
+M.KeyDown:connect(function(key)
+    if key == "j" then
+        if on_1 == true then
+            wait()
+            on_1 = false
+        elseif on_1 == false then
+            wait()
+            on_1 = true
+        end
+    end
+end)
 
---examp of checking and use
 while wait(0.5) do
-	if on_1 == true then
-		update_1()
-	elseif on_1 == false then
-		stop_1()
-	end
+    if on_1 == true then
+        update_1()
+    elseif on_1 == false then
+        stop_1()
+    end
 end
