@@ -4,6 +4,8 @@ local ts = game:GetService("TweenService")
 local LP = game:GetService("Players").LocalPlayer
 local root = LP.Character:FindFirstChild("HumanoidRootPart")
 dist = 3000
+M = game.Players.LocalPlayer:GetMouse()
+local on_3 = true
 
 LP.Character.Humanoid.PlatformStand = true
 
@@ -26,7 +28,7 @@ local function Tween(part, endpos, speed)
     if part and endpos then
         --
         local mageee = (root.Position - endpos).Magnitude
-        if mageee > 70 then
+        if mageee > 40 then
             local setuppos_1 = Vector3.new(part.Position.X,101,part.Position.Z)
             local Time_1 = (setuppos_1 - part.Position).magnitude/speed
             local Info_1 = TweenInfo.new(Time_1, Enum.EasingStyle.Linear)
@@ -103,11 +105,13 @@ local function Find(arr)
 end
 
 
-while wait(0.2) do
-
+local function update_3()
+----
+bp.MaxForce = Vector3.new(400000,400000,400000)
 if game.Workspace:FindFirstChild(LP.Name) then
     if LP.Character:FindFirstChildOfClass("Humanoid") then
         if LP.Character.Humanoid.Health > 30 then
+            LP.Character.Humanoid.PlatformStand = true
 
             local chests = game:GetService("Workspace").Map:GetDescendants()
             local BestPart = Find(chests)
@@ -126,5 +130,43 @@ if game.Workspace:FindFirstChild(LP.Name) then
         end
     end
 end
+----
+end
 
+local function stop_3(speed)
+----
+if LP.Character.Humanoid.PlatformStand ~= false then
+    local setuppos_1 = Vector3.new(fpart.Position.X,fpart.Position.Y + 60,fpart.Position.Z)
+    local Time_1 = (setuppos_1 - fpart.Position).magnitude/speed
+    local Info_1 = TweenInfo.new(Time_1, Enum.EasingStyle.Linear)
+    local Tween_1 = ts:Create(fpart,Info_1,{CFrame = CFrame.new(fpart.Position.X,fpart.Position.Y + 60,fpart.Position.Z)})
+    Tween_1:Play()
+    wait(Time_1)
+
+    bp.MaxForce = Vector3.new(0,0,0)
+    LP.Character.Humanoid.PlatformStand = false
+end
+----
+end
+
+M.KeyDown:connect(function(key)
+    if key == "k" then
+        if on_3 == true then
+            wait()
+            on_3 = false
+        elseif on_3 == false then
+            wait()
+            on_3 = true
+        end
+    end
+end)
+
+while wait(0.3) do
+----
+    if on_3 == true then
+        update_3()
+    elseif on_3 == false then
+        stop_3(75)
+    end
+----
 end
